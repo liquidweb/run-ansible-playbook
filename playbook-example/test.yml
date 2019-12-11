@@ -1,6 +1,10 @@
 ---
 - hosts: all
-  name: Is this thing on?
+  gather_facts: false
+
+  roles:
+    - common
+
   tasks:
     - name: Create a file called '/tmp/derp' with content 'derpage'.
       copy:

@@ -1,0 +1,5 @@
+---
+- name: Wait for network
+  wait_for_connection:
+    delay: 10
+    timeout: 300
