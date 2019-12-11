@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -euo pipefail
+
+[[ -z ${IP:-} ]] && {
+	echo "Environment variable [IP] is not defined. Cannot continue."
+	exit 1
+}
+[[ -z ${PLAYBOOK:-} ]] && {
+	echo "Environment variable [PLAYBOOK] is not defined. Cannot continue."
+	exit 1
+}
+
+[[ -e ${PLAYBOOK} ]] || {
+	echo "Ansible playbook defined in environment variable [PLAYBOOK] has a value of [${PLAYBOOK}]; however it doesnt exist. Cannot continue."
+	exit 1
+}
+
+pkey_file=/root/.ssh/id_rsa
+
+[[ -n ${PRIVATE_KEY_FILE:-} ]] && {
+	pkey_file=${PRIVATE_KEY_FILE}
+}
+
+[[ -e ${pkey_file} ]] || {
+	echo "No private ssh key has been found. By default, [/root/.ssh/id_rsa] is checked, you can override with the [PRIVATE_KEY_FILE] environment variable."
+	exit 1
+}
+
+# wait for network
+echo "waiting for network.."
+sleep 10
+
+ansible-playbook --ssh-extra-args="-i ${pkey_file}" -u root -i ${IP}, ${PLAYBOOK}

@@ -1,0 +1,8 @@
+---
+- hosts: all
+  name: Is this thing on?
+  tasks:
+    - name: Create a file called '/tmp/derp' with content 'derpage'.
+      copy:
+        content: hello world
+        dest: /tmp/derp
