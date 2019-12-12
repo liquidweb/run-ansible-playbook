@@ -28,9 +28,7 @@ pkey_file=/root/.ssh/id_rsa
 }
 
 gw=$(ip r|grep -Po 'default via \S+'|awk '{print $3}')
-arping ${gw} -c5
-ping ${gw} -c5
-arping ${IP} -c5
-ping ${IP} -c5
+arping ${gw} -c1
+ping ${gw} -c1
 
 ansible-playbook --ssh-extra-args="-i ${pkey_file}" -u root -i ${IP}, ${PLAYBOOK}
