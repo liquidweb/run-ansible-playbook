@@ -6,6 +6,8 @@ RUN yum install epel-release  -y
 
 RUN yum install ansible iputils -y
 
+RUN yum update -y
+
 ADD exec-playbook /root/exec-playbook
 ADD ansible.cfg /root/.ansible.cfg
 
