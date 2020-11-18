@@ -1,12 +1,8 @@
-FROM centos:8
+FROM fedora:latest
 
-RUN yum install 'dnf-command(config-manager)' -y
-RUN yum config-manager --set-enabled PowerTools
-RUN yum install epel-release  -y
+RUN dnf install iproute ansible iputils -y
 
-RUN yum install ansible iputils -y
-
-RUN yum update -y
+RUN dnf update -y
 
 ADD exec-playbook /root/exec-playbook
 ADD ansible.cfg /root/.ansible.cfg
