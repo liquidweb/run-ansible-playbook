@@ -1,8 +1,8 @@
-FROM fedora:latest
+FROM ubuntu:latest
 
-RUN dnf install iproute ansible iputils -y
+RUN apt install iproute ansible iputils -y
 
-RUN dnf update -y
+RUN apt update -y
 
 RUN ansible-galaxy collection install community.general
 
