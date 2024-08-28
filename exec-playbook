@@ -31,7 +31,10 @@ gw=$(ip r|grep -Po 'default via \S+'|awk '{print $3}')
 arping ${gw} -c1
 ping ${gw} -c1
 
+echo "DEBUG-START"
 cat $pkey_file
+echo "DEBUG-END"
+
 
 ansible --ssh-extra-args="-i ${pkey_file}" -u root -i ${IP}, -m ping
 
