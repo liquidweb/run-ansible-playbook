@@ -35,4 +35,4 @@ ping ${gw} -c1
 
 ansible all -i hosts -m ping
 
-ansible-playbook --ssh-extra-args="-i ${pkey_file}" -u root -i ${IP}, ${PLAYBOOK}
+ansible-playbook --ssh-extra-args="-i ${pkey_file}" -F /root/.ssh/config -u root -i ${IP}, ${PLAYBOOK}
