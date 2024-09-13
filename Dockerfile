@@ -6,6 +6,8 @@ RUN apt update -y
 
 RUN ansible-galaxy collection install community.general
 
+RUN ansible --version
+
 ADD exec-playbook /root/exec-playbook
 ADD ansible.cfg /root/.ansible.cfg
 
