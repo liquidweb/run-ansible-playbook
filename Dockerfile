@@ -1,12 +1,10 @@
-FROM ubuntu:latest
+FROM ubuntu:noble
 
-RUN apt install iproute python iputils -y
+RUN apt-get update
 
-RUN apt update
+RUN apt-get upgrade -y
 
-RUN apt upgrade -y
-
-RUN pip install ansible --user
+RUN apt-get install iproute2 python3-pip python3-full iputils-arping iputils-ping ansible -y -f
 
 RUN ansible-galaxy collection install community.general
 
